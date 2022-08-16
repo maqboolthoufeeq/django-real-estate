@@ -1,0 +1,53 @@
+# Create User - POST
+http://127.0.0.1:8000/api/v1/auth/users/
+
+{
+	"username":"marydeker",
+	"email":"mary.decker@gmail.com",
+	"first_name":"mary",
+	"last_name":"decker",
+	"password":"pass123456",
+	"re_password":"pass123456"
+}
+
+
+# Check mail : https://mailtrap.io/inboxes/1855906/messages/2940202605
+
+# Activate New User - POST
+http://127.0.0.1:8000/api/v1/auth/users/activation/
+
+{
+	"uid":"Mg", #uid and token will get from the link from email
+	"token": "ba8ko9-8f96ef15df73a8cddd8b872631fd4a9c"
+}
+
+
+# User Login - POST - ie, JWT will create a new token for login
+http://127.0.0.1:8000/api/v1/auth/jwt/create/
+
+{
+	"email":"mary.decker@gmail.com",
+	"password": "pass123456"
+}
+
+# User password reset link generation - POST
+http://127.0.0.1:8000/api/v1/auth/users/reset_password/
+{
+	"email":"mary.decker@gmail.com"
+}
+After this the reset password link will appear on the mailtrap.io
+
+
+# User password confirmation api - POST
+http://127.0.0.1:8000/api/v1/auth/users/reset_password_confirm/
+
+{
+	"new_password": "pass1234567",
+	"re_new_password": "pass1234567",
+	"uid":"Mg",
+	"token":"ba8ldk-b2040bd22690850c7be5b97183f7f052"
+}
+
+After this password changed succesfully mail will generate
+
+
