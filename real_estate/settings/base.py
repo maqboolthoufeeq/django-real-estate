@@ -67,6 +67,8 @@ LOCAL_APPS = [
     'apps.users',
     'apps.profiles',
     'apps.ratings',
+    'apps.enquiries',
+    'apps.properties',
     # 'apps.',
 ]
 
