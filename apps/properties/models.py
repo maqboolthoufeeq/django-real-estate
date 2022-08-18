@@ -64,10 +64,10 @@ class Property(TimeStampedUUIDModel):
                                      choices=PropertyType.choices, default=PropertyType.OTHER)
     cover_photo = models.ImageField(verbose_name=_("Cover Photo"),
                                     default="sample_images/house_sample.jpg", null=True, blank=True)
-    photo1 = models.ImageField(default="sample_images/interior_sample.jpg", null=True, blank=True)
-    photo2 = models.ImageField(default="sample_images/interior_sample.jpg", null=True, blank=True)
-    photo3 = models.ImageField(default="sample_images/interior_sample.jpg", null=True, blank=True)
-    photo4 = models.ImageField(default="sample_images/interior_sample.jpg", null=True, blank=True)
+    photo1 = models.ImageField(default="interior_sample.jpg", null=True, blank=True)
+    photo2 = models.ImageField(default="interior_sample.jpg", null=True, blank=True)
+    photo3 = models.ImageField(default="interior_sample.jpg", null=True, blank=True)
+    photo4 = models.ImageField(default="interior_sample.jpg", null=True, blank=True)
     published_status = models.BooleanField(verbose_name=_("Published Status"), default=False)
     views = models.IntegerField(verbose_name=_("Total Views"), default=0)
 
@@ -83,7 +83,7 @@ class Property(TimeStampedUUIDModel):
 
     def save(self, *args, **kwargs):
         self.title = str.title(self.title)
-        self.description = str.description(self.description)
+        self.description = str.capitalize(self.description)
         self.ref_code = "".join(
             random.choices(string.ascii_uppercase + string.digits, k=10)
         )
