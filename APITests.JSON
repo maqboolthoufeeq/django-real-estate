@@ -51,7 +51,7 @@ http://127.0.0.1:8000/api/v1/auth/users/reset_password_confirm/
 After this password changed succesfully mail will generate
 
 
-# Get User Profile - GET
+# Get User Profile - GET - AUTH Required (jwt_token)
 {{ _.local_url }}/api/v1/profile/me/
 
  -> Bearer Authentication : get it from User Login API
@@ -73,3 +73,26 @@ After this password changed succesfully mail will generate
 
 # Get all Top Agents - GET
 {{ _.local_url }}/api/v1/profile/top-agents/all/
+
+
+# Create Property - POST
+{{ _.local_url }}/api/v1/properties/create/
+{
+	"title":"My very big property",
+	"country": "India",
+	"city":"Bangalore",
+	"price":100000
+}
+
+# Get all properties - GET
+{{ _.local_url }}/api/v1/properties/all/
+
+
+
+# Get agents property - GET - AUTH Required (jwt_token)
+/api/v1/properties/agents/
+
+
+# Property filter - GET - (Add query parameter) (advert_type/property_type/price/price__gt/price__lt)
+{{ _.local_url }}/api/v1/properties/all/?advert_type=For Rent
+{{ _.local_url }}/api/v1/properties/all/?price__gt=10000
