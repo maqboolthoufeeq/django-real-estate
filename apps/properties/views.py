@@ -162,7 +162,7 @@ def delete_property_api_view(request, slug):
         },
             status=status.HTTP_403_FORBIDDEN
         )
-    if property.method == 'DELETE':
+    if request.method == 'DELETE':
         delete_operation = property.delete()
         data = {}
         if delete_operation:

@@ -59,7 +59,7 @@ After this password changed succesfully mail will generate
 
  # Update User Profile - PATCH
  /api/v1/profile/update/marydeker/
- -> marydeker - is username
+ -> marydeker - is username 
  {
 	"phone_number":"+919999999999",
 	"about_me": "I'm Mary, Passionate about real estate",
@@ -96,3 +96,22 @@ After this password changed succesfully mail will generate
 # Property filter - GET - (Add query parameter) (advert_type/property_type/price/price__gt/price__lt)
 {{ _.local_url }}/api/v1/properties/all/?advert_type=For Rent
 {{ _.local_url }}/api/v1/properties/all/?price__gt=10000
+
+
+# Update Propery - PUT - Auth Required
+{{ _.local_url }}/api/v1/properties/update/<slug>/
+{{ _.local_url }}/api/v1/properties/update/my-very-big-property/
+
+{
+	"title": "Another one by roottttt",
+	"description":"testing update",
+	"country": "India",
+	"city" : "Delhi",
+	"postal_code" : "555"
+}
+
+
+
+# Delete Property - DELETE - Auth Requ
+{{ _.local_url }}/api/v1/properties/delete/<slug>/
+{{ _.local_url }}/api/v1/properties/delete/the-third-one-in-totatl/
