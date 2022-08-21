@@ -26,6 +26,6 @@ Then, run install the packages in the `requirements.txt`
 ```
 pip install -r requirements.txt
 ```
-Then, create a ``
+
 
 
