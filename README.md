@@ -1,6 +1,6 @@
 # django-real-estate
-This is a Real Estate Web application developed with following technologies
-**Python Django, DRF** <br />
+This is a Real Estate Web application developed with following technologies 
+ <br /> **Python Django, DRF** <br />
 **ReactJS** <br />
 **Docker**  <br />
 **Celery**  <br />
@@ -26,5 +26,6 @@ Then, run install the packages in the `requirements.txt`
 ```
 pip install -r requirements.txt
 ```
+Then, create a ``
 
 
