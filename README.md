@@ -1,13 +1,13 @@
 # django-real-estate
 This is a Real Estate Web application developed with following technologies
-**Python Django, DRF**
-**ReactJS**
-**Docker**
-**Celery**
-**Django Celery email**
-**Redis**
-**Djoser - Authentication**
-**Watchdoj - Django**
+**Python Django, DRF** <br />
+**ReactJS** <br />
+**Docker**  <br />
+**Celery**  <br />
+**Django Celery email**  <br />
+**Redis**  <br />
+**Djoser - Authentication**  <br />
+**Watchdoj - Django**  <br />
 
 # Getting Started
 First, create a python `virtual environment`
