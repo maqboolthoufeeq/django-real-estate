@@ -115,3 +115,14 @@ After this password changed succesfully mail will generate
 # Delete Property - DELETE - Auth Requ
 {{ _.local_url }}/api/v1/properties/delete/<slug>/
 {{ _.local_url }}/api/v1/properties/delete/the-third-one-in-totatl/
+
+
+# Rate an Agent - POST - Auth Requ 
+{{ _.local_url }}/api/v1/ratings/<str:profile_id>/
+
+{{ _.local_url }}/api/v1/ratings/e2615e2c-26c8-4d9d-8e13-be7a66bca5d2/
+
+{
+	"rating":2,
+	"comment":"He did very bad"
+}
