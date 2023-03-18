@@ -1,0 +1,15 @@
+python3 -m venv env
+
+py -3 -m venv env
+
+ctr+shift+p   -> python select interpreter
+env\Scripts\activate
+
+
+
+
+
+session 2 - Docker
+
+download from docker.com
+
