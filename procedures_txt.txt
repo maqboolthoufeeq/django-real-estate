@@ -41,3 +41,14 @@ docker compose up --build -d --remove-orphans
 docker compose logs
 
 docker compose down
+
+
+
+Makefile  (file)
+----------------
+install chocolatey using (powershell)
+https://chocolatey.org/install#individual
+
+choco install make -y  
+
+make build
