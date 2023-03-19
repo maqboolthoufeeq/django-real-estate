@@ -12,6 +12,21 @@ import sys
 import psycopg2
 try:
     psycopg2.connect(
-        db_name=
+        db_name="${POSTGRES_DB"'
+        user="${POSTGRES_USER}",
+        password="${POSTGRES_PASSWORD}",
+        host="${PG_HOST}",
+        port="${PG_PORT}",
     )
+exept psycopg2.OperationalError:
+    sys.exit(-1)
+END
 }
+
+until postgres_ready; do
+ >&2 echo "Wating for PostgreSQL to become available.... :-("
+ sleep 1
+done
+>&2 echo "PostgreSQL is ready!!!....:-)"
+
+exec "$@"

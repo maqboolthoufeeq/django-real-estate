@@ -11,5 +11,33 @@ env\Scripts\activate
 
 session 2 - Docker
 
-download from docker.com
+download and install from docker.com
 
+in windows
+-----------
+****ONLY if Docker stuck on starting issue occur****
+Uninstall Docker
+Restart your machine
+Install a linux WLS distro
+a. Check available linux distros available : wsl --list --online
+b. Choose the one you want (I chose Ubuntu, the 1st option) : wsl --install -d {DISTRO-NAME} e.g. wsl --install -d Ubuntu
+c. You might get an error about a missing WLS update while installing, go on google with the error and you will find the link to the installation of that update.
+Install Docker (Docker Desktop Installer.exe)
+
+
+
+
+check
+------
+docker --version
+docker-compose --version
+
+Dockerfile
+
+docker-compose config
+
+docker compose up --build -d --remove-orphans 
+
+docker compose logs
+
+docker compose down
