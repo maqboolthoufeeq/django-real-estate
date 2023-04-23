@@ -36,7 +36,7 @@ volume:
 	docker volume inspect django-real-estate_postgres_data
 
 estate-db:
-	docker compose exec postgres-db psql --username=admin --dbname=estate
+	docker compose exec postgres-db psql --username=${POSTGRES_USER} --dbname=${POSTGRES_DB}
 
 test:
 	docker compose exec api pytest -p no:warnings --cov=.
