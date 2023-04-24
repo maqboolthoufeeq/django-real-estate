@@ -22,11 +22,14 @@ RUN apt-get update \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip | pip install --upgrade pip
 
 COPY ./requirements.txt /app/requirements.txt 
 
 RUN pip3 install -r requirements.txt
+
+RUN pip3 install --upgrade click
+RUN pip3 install --upgrade black
 
 COPY ./docker/local/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint

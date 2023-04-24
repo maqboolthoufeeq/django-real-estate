@@ -1,6 +1,8 @@
-from pyexpat import model
 from tkinter.tix import Tree
+
+from pyexpat import model
 from rest_framework import serializers
+
 from .models import Rating
 
 

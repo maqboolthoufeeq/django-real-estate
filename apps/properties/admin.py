@@ -1,5 +1,7 @@
 from turtle import title
+
 from django.contrib import admin
+
 from .models import Property, PropertyViews
 
 

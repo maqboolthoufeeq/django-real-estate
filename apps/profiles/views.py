@@ -1,7 +1,8 @@
+import imp
 from dataclasses import dataclass
 from functools import partial
-import imp
 from multiprocessing import context
+
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -64,7 +65,9 @@ class UpdateProfileAPIView(APIView):
             raise NotYourProfile
 
         data = request.data
-        serializer = UpdateProfileSerializer(instance=request.user.profile, data=data, partial=True)
+        serializer = UpdateProfileSerializer(
+            instance=request.user.profile, data=data, partial=True
+        )
 
         serializer.is_valid()
         serializer.save()
