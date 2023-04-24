@@ -1,6 +1,7 @@
 import email
-from pyexpat import model
+
 from django_countries.serializer_fields import CountryField
+from pyexpat import model
 from rest_framework import serializers
 
 from apps.ratings.serializers import RatingSerializer

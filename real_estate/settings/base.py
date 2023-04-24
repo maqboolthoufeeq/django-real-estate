@@ -1,10 +1,10 @@
-from django.utils.log import DEFAULT_LOGGING
-import logging.config
 import logging
+import logging.config
 from datetime import timedelta
 from pathlib import Path
 
 import environ
+from django.utils.log import DEFAULT_LOGGING
 
 env = environ.Env(DEBUG=(bool, False))
 

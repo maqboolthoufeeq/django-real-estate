@@ -1,6 +1,7 @@
-from pyexpat import model
-from django.db import models
 import uuid
+
+from django.db import models
+from pyexpat import model
 
 
 class TimeStampedUUIDModel(models.Model):
