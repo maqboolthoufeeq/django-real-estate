@@ -64,7 +64,9 @@ class UpdateProfileAPIView(APIView):
             raise NotYourProfile
 
         data = request.data
-        serializer = UpdateProfileSerializer(instance=request.user.profile, data=data, partial=True)
+        serializer = UpdateProfileSerializer(
+            instance=request.user.profile, data=data, partial=True
+        )
 
         serializer.is_valid()
         serializer.save()

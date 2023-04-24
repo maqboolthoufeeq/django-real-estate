@@ -18,7 +18,7 @@ from .pagination import PropertyPagination
 from .serializers import (
     PropertyCreateSerializer,
     PropertySerializer,
-    PropertyViewSerializer
+    PropertyViewSerializer,
 )
 
 logger = logging.getLogger(__name__)
@@ -50,7 +50,7 @@ class ListAllPropertiesAPIView(generics.ListAPIView):
     filter_backends = [
         DjangoFilterBackend,
         filters.SearchFilter,
-        filters.OrderingFilter
+        filters.OrderingFilter,
     ]
 
     filterset_class = PropertyFilter
@@ -65,7 +65,7 @@ class ListAgentsPropertiesAPIView(generics.ListAPIView):
     filter_backends = [
         DjangoFilterBackend,
         filters.SearchFilter,
-        filters.OrderingFilter
+        filters.OrderingFilter,
     ]
 
     filterset_class = PropertyFilter
@@ -84,7 +84,6 @@ class PropertyViewsAPIView(generics.ListAPIView):
 
 
 class PropertyDetailView(APIView):
-
     def get(self, request, slug):
         property = Property.objects.get(slug=slug)
 
@@ -99,12 +98,12 @@ class PropertyDetailView(APIView):
             property.views += 1
             property.save()
 
-            serializer = PropertySerializer(property, context={'request': request})
+            serializer = PropertySerializer(property, context={"request": request})
 
             return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@api_view(['PUT'])
+@api_view(["PUT"])
 @permission_classes([permissions.IsAuthenticated])
 def update_property_api_view(request, slug):
     try:
@@ -115,14 +114,12 @@ def update_property_api_view(request, slug):
     user = request.user
 
     if property.user != user:
-        return Response({
-            'error': "You can't edit a property tht doesn't belongs to you"
-        },
-            status=status.HTTP_403_FORBIDDEN
-
+        return Response(
+            {"error": "You can't edit a property tht doesn't belongs to you"},
+            status=status.HTTP_403_FORBIDDEN,
         )
 
-    if request.method == 'PUT':
+    if request.method == "PUT":
         data = request.data
         serializer = PropertySerializer(property, data, many=False)
         serializer.is_valid(raise_exception=True)
@@ -130,12 +127,12 @@ def update_property_api_view(request, slug):
         return Response(serializer.data)
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
 def create_property_api_view(request):
     user = request.user
     data = request.data
-    data['user'] = request.user.pkid
+    data["user"] = request.user.pkid
     serializer = PropertyCreateSerializer(data=data)
 
     if serializer.is_valid():
@@ -157,23 +154,22 @@ def delete_property_api_view(request, slug):
 
     user = request.user
     if property.user != user:
-        return Response({
-            'error': "You are not authorized to delete"
-        },
-            status=status.HTTP_403_FORBIDDEN
+        return Response(
+            {"error": "You are not authorized to delete"},
+            status=status.HTTP_403_FORBIDDEN,
         )
-    if request.method == 'DELETE':
+    if request.method == "DELETE":
         delete_operation = property.delete()
         data = {}
         if delete_operation:
-            data['success'] = "Data Deleted"
+            data["success"] = "Data Deleted"
         else:
-            data['failure'] = "Data Deleton Failed"
+            data["failure"] = "Data Deleton Failed"
 
         return Response(data=data)
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def uploadPropertyImage(request):
     data = request.data
 
@@ -196,61 +192,61 @@ class PropertySearchAPIView(APIView):
         queryset = Property.objects.filter(published_status=True)
         data = self.request.data
 
-        advert_type = data['advert_type']
+        advert_type = data["advert_type"]
         queryset = queryset.filter(advert_type__iexact=advert_type)
 
-        price = data['price']
-        if price == '$0+':
+        price = data["price"]
+        if price == "$0+":
             price = 0
-        elif price == '$50,000+':
+        elif price == "$50,000+":
             price = 50000
-        elif price == '$100,000+':
+        elif price == "$100,000+":
             price = 100000
-        elif price == '$200,000+':
+        elif price == "$200,000+":
             price = 200000
-        elif price == '$400,000+':
+        elif price == "$400,000+":
             price = 400000
-        elif price == '$060,000+':
+        elif price == "$060,000+":
             price = 600000
-        elif price == 'Any':
+        elif price == "Any":
             price = -1
 
         if price != -1:
             queryset = queryset.filter(price__gte=price)
 
-        bedrooms = data['bedrooms']
-        if bedrooms == '0+':
+        bedrooms = data["bedrooms"]
+        if bedrooms == "0+":
             bedrooms = 0
-        elif bedrooms == '1+':
+        elif bedrooms == "1+":
             bedrooms = 1
-        elif bedrooms == '2+':
+        elif bedrooms == "2+":
             bedrooms = 2
-        elif bedrooms == '3+':
+        elif bedrooms == "3+":
             bedrooms = 3
-        elif bedrooms == '4+':
+        elif bedrooms == "4+":
             bedrooms = 4
-        elif bedrooms == '5+':
+        elif bedrooms == "5+":
             bedrooms = 5
 
         queryset = queryset.filter(bedrooms__gte=bedrooms)
 
-        bathrooms = data['bathrooms']
-        if bathrooms == '0+':
+        bathrooms = data["bathrooms"]
+        if bathrooms == "0+":
             bathrooms = 0
-        elif bathrooms == '1+':
+        elif bathrooms == "1+":
             bathrooms = 1
-        elif bathrooms == '2+':
+        elif bathrooms == "2+":
             bathrooms = 2
-        elif bathrooms == '3+':
+        elif bathrooms == "3+":
             bathrooms = 3
-        elif bathrooms == '4+':
+        elif bathrooms == "4+":
             bathrooms = 4
-        elif bathrooms == '5+':
+        elif bathrooms == "5+":
             bathrooms = 5
 
         queryset = queryset.filter(bathrooms__gte=bathrooms)
 
-        catch_phrase = data['catch_phrase']
+        catch_phrase = data["catch_phrase"]
         queryset = queryset.filter(description__icontains=catch_phrase)
 
         serializer = PropertySerializer(queryset, many=True)
